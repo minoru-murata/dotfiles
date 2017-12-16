@@ -1,5 +1,5 @@
 #! /bin/bash
-ln -s ~/dotfiles/.screen ~/.screenrc
+ln -s ~/dotfiles/.screenrc ~/.screenrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 
