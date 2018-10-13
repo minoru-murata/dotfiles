@@ -1,0 +1,88 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# モジュール属性 argv を取得するため
+import sys
+import datetime
+import argparse
+import calendar
+
+parser = argparse.ArgumentParser(
+            prog="program name here", #プログラム名
+            usage="usage goes here", #プログラムの利用方法
+            description="description goes here", #「optional arguments」の前に表示される説明文
+            epilog = "dddddddddd", #「optional arguments」後に表示される文字列
+            add_help = True #[-h],[--help]オプションをデフォルトで追加するか
+            )
+
+group = parser.add_mutually_exclusive_group(required = True)
+group.add_argument('-d', '--date' ,#オプション引数
+          type=str,
+          metavar = "YYYYMM",
+          help = "specification date"
+            )
+
+group = parser.add_mutually_exclusive_group(required = True)
+group.add_argument('-c', '--csvfile' ,#オプション引数
+          type=str,
+          metavar = "csvfile",
+          help = "master csvfile"
+            )
+
+group = parser.add_mutually_exclusive_group(required = True)
+group.add_argument('-u', '--urlfile' ,#オプション引数
+          type=str,
+          metavar = "urlfile",
+          help = "master urlfile"
+		    )
+
+group = parser.add_mutually_exclusive_group(required = True)
+group.add_argument('-o', '--outfile' ,#オプション引数
+          type=str,
+          metavar = "outfile",
+          help = "outfile"
+		    )
+
+p_args = parser.parse_args()
+
+if (p_args):
+  idate = p_args.date+'01'
+else:
+  idate = ""
+
+if (idate != ""):
+  # datetime変換をすることで日付フォーマットをチェックする
+  try:
+    s_day=datetime.datetime.strptime(idate, '%Y%m%d')
+#    print("success")
+#    print(s_day)
+  except ValueError:
+    print("Error -d YYYYMMDD")
+  except:
+    print("error")
+
+_, lastday = calendar.monthrange(int(s_day.strftime('%Y')),int(s_day.strftime('%m')))
+#print("{0}".format(lastday))
+e_day = datetime.datetime.strptime(s_day.strftime('%Y%m')+"{0}".format(lastday), '%Y%m%d')
+
+start_day=s_day.strftime('%Y%m%d')
+end_day=e_day.strftime('%Y%m%d')
+
+#print ("start day {0}".format(start_day))
+#print ("end   day {0}".format(end_day))
+
+dt = s_day - datetime.datetime(1899, 12, 30)
+#print (dt.days)
+start_num=((dt.days - 25569)*86400-32400)*1000		# ex.8/1 00:00
+#print(start_num)
+dt = e_day - datetime.datetime(1899, 12, 30)
+#print (dt.days)
+end_num=((dt.days - 25569)*86400-32400)*1000 + 86340000	# ex. 8/31 23:59
+#print(end_num)
+
+#print (p_args.csvfile)
+#print (p_args.xmlfile)
+
+
+
+

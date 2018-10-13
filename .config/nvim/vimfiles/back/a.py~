@@ -1,0 +1,9 @@
+
+
+in_f=open('outfile')
+line=in_f.readline()
+while line:
+    print(line)
+    line=in_f.readline()
+in_f.close()
+

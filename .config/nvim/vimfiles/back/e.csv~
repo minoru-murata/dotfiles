@@ -1,0 +1,11 @@
+#,ファイル名,サーバ名,対象データ,QoS,ターゲット
+1,cldp2005svet001-CPU.xml,cldp2005svet001,CPU,QOS_CPU_Usage,CPU Usage (Average/Rate)
+2,cldp2005svet002-CPU.xml,cldp2005svet002,CPU,QOS_CPU_Usage,CPU Usage (Average/Rate)
+4,cldp2005svet001-MEM.xml,cldp2005svet001,MEM,QOS_MEMORY_PERC_USAGE,Memory Usage
+5,cldp2005svet002-MEM.xml,cldp2005svet002,MEM,QOS_MEMORY_PERC_USAGE,Memory Usage
+6,cldp2005svet003-MEM.xml,cldp2005svet003,MEM,QOS_MEMORY_PERC_USAGE,Memory Usage
+7,cldp2005svet001-CPU.xml,cldp2005svet001,CPU,QOS_CPU_Usage,CPU Usage (Average/Rate)
+8,cldp2005svet002-CPU.xml,cldp2005svet002,CPU,QOS_CPU_Usage,CPU Usage (Average/Rate)
+9,cldp2005svet001-MEM.xml,cldp2005svet001,MEM,QOS_MEMORY_PERC_USAGE,Memory Usage
+10,cldp2005svet002-MEM.xml,cldp2005svet002,MEM,QOS_MEMORY_PERC_USAGE,Memory Usage
+11,cldp2005svet002-MEM.xml,cldp2005svet002,MEM,QOS_MEMORY_PERC_USAGE,Memory Usage

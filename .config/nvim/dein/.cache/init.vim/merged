@@ -1,0 +1,2 @@
+100
+['Shougo/dein.vim', 'Shougo/deoplete.nvim', 'Shougo/neco-syntax', 'Shougo/neco-vim', 'Xuyuanp/nerdtree-git-plugin', 'airblade/vim-gitgutter', 'bronson/vim-trailing-whitespace', 'cespare/vim-toml', 'cohama/lexima.vim', 'itchyny/lightline.vim', 'jistr/vim-nerdtree-tabs', 'nathanaelkane/vim-indent-guides', 'osyo-manga/vim-over', 'scrooloose/nerdtree', 'sjl/gundo.vim', 'tpope/vim-fugitive', 'tyru/caw.vim', 'ujihisa/neco-look', 'vim-syntastic/syntastic', 'zchee/deoplete-jedi']

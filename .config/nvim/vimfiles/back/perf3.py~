@@ -1,0 +1,167 @@
+# -*- coding: utf-8 -*-
+# python2.7をjthonに認識のさせるためのコード #
+#loading python site packages selenium
+#Pathはpython2.7が設置された所です。
+installedSitePakagePath = "/home/dev001/python2.7/lib/python2.7/site-packages/"
+sys.path.append(installedSitePakagePath)
+
+import sys
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+import unittest, time, re
+# 以下seleniumのコード
+
+#options = Options()
+#options.add_argument('--headless')
+#options.add_argument('--disable-gpu')
+#driver = webdriver.Chrome(chrome_options=options)
+
+chrome_options = Options()
+chrome_options.add_argument("--disable-features=EnableEphemeralFlashPermission")
+chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--disable-web-security")
+chrome_options.add_argument("--user-data-dir=/home/dev001")
+chrome_options.add_argument("--allow-running-insecure-content")
+#chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--ppapi-flash-path=/home/dev001/.config/google-chrome/PepperFlash/31.0.0.108/libpepflashplayer.so")
+chrome_options.add_argument("--ppapi-flash-version=31.0.0.108")
+chrome_options.add_argument("--disable-bundled-ppapi-flash")
+prefs = {
+    "profile.default_content_setting_values.plugins":"1",
+    "profile.content_settings.plugin_whitelist.adobe-flash-player":"1",
+    "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player":"1"
+#    "PluginsAllowedForUrls":["http://perf.wwws.nri.co.jp"],
+#    "PluginsBlockedForUrls":["http://www.example.com"]
+}
+chrome_options.add_experimental_option("prefs", prefs)
+driver = webdriver.Chrome(executable_path=r'/usr/local/bin/chromedriver', chrome_options=chrome_options)
+#driver = webdriver.Chrome(executable_path=r'/usr/local/bin',
+#                      chrome_options=driver_options)
+
+
+# プロキシの設定
+#PROXY = '{proxy-server}:{port}' # サーバーとポート
+#PROXY_AUTH = '{userid}:{password}' # IDとパスワード
+
+# オプション
+#option = Options()
+#option.add_argument('--proxy-server=http://%s' % PROXY)
+#option.add_argument('--proxy-auth=%s' % PROXY_AUTH)
+
+# network.proxy.type => 0 プロキシを使用しない
+#profile.set_preference("network.proxy.type", 0)
+
+# flash を有効にする
+#profile.set_preference("plugin.state.flash", 2)
+
+# Firefoxのwebdriverをロード
+# dirver = webdriver.Chrome(chrome_options=chrome_options)
+#driver = webdriver.Firefox(firefox_profile=profile)
+
+# 要素がロードされるまでの待ち時間を10秒に設定
+driver.implicitly_wait(10)
+
+# for sikulix
+setShowActions=True
+Settings.ActionLogs = True
+Settings.InfoLogs = True
+Settings.DebugLogs = False
+Settings.LogTime = False
+
+Settings.AlwaysResize=1
+Settings.MoveMouseDelay = 0
+Settings.ClickDelay = 0
+Settings.DelayBeforeMouseDown = 0
+Settings.TypeDelay = 0
+Settings.AutoWaitTimeout = 30 * 1000
+# 画像判定の類似度を90%にする
+Settings.MinSimilarity=0.90
+
+count=0
+
+with open("/home/dev001/dev/python3.6/url_gen/output/output", encoding='utf-8') as in_f:
+    line = in_f.read()
+    line = content.strip()
+
+    driver.get(line)
+    count=count+1
+# ---sikulix--- Begin
+
+    while not exists("1539321674184.png"):
+        sleep(3)
+    click("1539321674184.png")
+    type("administrator")
+    type(Key.TAB)
+    type("46$hiGE!")
+    type(Key.ENTER)
+
+    while not exists("1539326705746.png"):
+        sleep(3)
+    click("1539326705746.png")
+    while not exists("1539326768159.png"):
+        sleep(3)
+    click("1539326768159.png")
+    while not exists("1539326794569.png"):
+        sleep(3)
+    click("1539326819337.png")
+
+    type(Key.DELETE)
+    type("/home/dev001/tmp2/"+count)
+    type(Key.ENTER)
+
+    while not exists("1539326794569.png"):
+        sleep(3)
+    click("1539326848521.png")
+
+
+## ---sikulix--- End
+
+#import glob
+#path = '/home/dev001/dev/python2.7/sikulix/perf.sikuli/*.xml'
+#xf = glob.glob(path)
+#
+#get_perf(xf)
+#
+## driverの開放
+#driver.quit()
+
+exit()
+
+
+
+
+
+
+#-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

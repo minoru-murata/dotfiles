@@ -1,0 +1,51 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# コマンドライン引数を処理する
+from xml_argument import *
+
+# p_args.csvfile
+# p_args.xmlfile
+# p_args.outdir
+# start_num
+# end_num
+
+debug=1
+
+if (debug):
+    print(start_num)
+    print(end_num)
+    print(p_args.csvfile)
+    print(p_args.xmlfile)
+    print(p_args.outdir)
+
+# 正規表現による検索
+import re
+
+# CSVファイルのライブラリ
+import csv
+
+# XMLファイルのライブラリ
+import xml.etree.ElementTree
+
+#print (p_args.xmlfile)
+etree = xml.etree.ElementTree.parse(p_args.xmlfile) # fileをxml形式で読み込み
+
+# CSV
+in_f = open(file=p_args.csvfile,mode='r',encoding='cp932',newline='\r\n')
+
+# csvファイルをparse
+line=csv.reader(in_f, delimiter=",", doublequote=True, lineterminator="\r\n", quotechar='"', skipinitialspace=True)
+
+for row in line:      # row[1]outfilename,row[2]
+	matchOB = re.search(r"^#", row[0])
+	# コメント行は読み飛ばす
+	if not (matchOB):
+		# 要素の内容を指定
+		etree.find(".//TimeStart").text = str(start_num)
+		etree.find(".//TimeStop").text = str(end_num)
+		etree.find(".//displayName").text = row[2] + '|' + row[3] + '|' + row[4]
+		etree.write(p_args.outdir + '/' + row[1], encoding='utf-8')
+		print(row[1],row[2],row[3])
+
+in_f.close()

@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+
+import xml.etree.ElementTree
+
+f = "perform_templ.xml"
+etree = xml.etree.ElementTree.parse(f) # fileをxml形式で読み込み
+#root = xmlDom.getroot()
+#path = etree.find(".//path").text.encode('utf_8')
+TimeStart = etree.find(".//TimeStart").text.encode('utf_8')
+TimeStop = etree.find(".//TimeStop").text.encode('utf_8')
+print (path)
+print (TimeStart)
+print (TimeStop)
+
+etree.find(".//TimeStart").text = "1234"
+etree.find(".//TimeStop").text = "5678"
+
+
+TimeStart = etree.find(".//TimeStart").text.encode('utf_8')
+TimeStop = etree.find(".//TimeStop").text.encode('utf_8')
+print (path)
+print (TimeStart)
+print (TimeStop)

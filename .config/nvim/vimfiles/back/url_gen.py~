@@ -1,0 +1,76 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# コマンドライン引数を処理する
+from url_argument import *
+
+# p_args.csvfile
+# p_args.xmlfile
+# p_args.outdir
+# start_num
+# end_num
+
+debug=1
+
+if (debug):
+    print(start_num)
+    print(end_num)
+    print(p_args.csvfile)
+    print(p_args.urlfile)
+    print(p_args.outfile)
+
+# 正規表現による検索
+import re
+
+# CSVファイルのライブラリ
+import csv
+
+# XMLファイルのライブラリ
+import xml.etree.ElementTree
+
+#print (p_args.urlfile)
+with open(p_args.urlfile, encoding='utf-8') as url_f:
+    content = url_f.read()
+    content = content.strip()
+url_f.close
+
+# CSV
+in_f = open(file=p_args.csvfile,mode='r',encoding='cp932',newline='\r\n')
+out_f = open(p_args.outfile, mode='w',encoding='utf-8')
+
+# csvファイルをparse
+line=csv.reader(in_f, delimiter=",", doublequote=True, lineterminator="\r\n", quotechar='"', skipinitialspace=True)
+
+# 一応初期化
+count = 0
+max_count = 10
+
+
+# １行ずつループ
+for row in line:
+    matchOB = re.search(r"^#", row[0])
+    # コメント行は読み飛ばす
+    if not (matchOB):
+        # 整数÷整数だと切り捨てられるよ
+        host_m = '{\'sqt\':'+'\''+row[2]+'|'+row[4]+'|'+row[5]+'\'},]'
+        content=content.replace(']',host_m)
+        # 10行処理
+        if (count < max_count):
+            content=content.replace(',]', ']')
+            content=content.replace('\'time\':', '\'time\':'+'\''+str(start_num)+'-'+str(end_num)+'\'')
+            # ファイルに出力する
+            out_f.write(content+'\n')
+            count = 0
+            with open(p_args.urlfile, encoding='utf-8') as url_f:
+                content = url_f.read()
+            url_f.close
+
+        count = count + 1
+
+if (count != 0):
+    content=content.replace(',]', ']')
+    content=content.replace('\'time\':', '\'time\':'+'\''+str(start_num)+'-'+str(end_num)+'\'')
+    out_f.write(content+'\n')
+
+out_f.close()
+in_f.close()

@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+#from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from time import sleep
+
+# ブラウザを開く。
+
+chrome_options = Options()
+chrome_options.add_argument("--disable-features=EnableEphemeralFlashPermission")
+chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--disable-web-security")
+chrome_options.add_argument("--allow-running-insecure-content")
+chrome_options.add_argument("--incognito")
+driver_options.add_argument("--ppapi-flash-path=/home/dev001/.config/google-chrome/PepperFlash/31.0.0.108/libpepflashplayer.so")
+driver_options.add_argument("--ppapi-flash-version=31.0.0.108")
+driver_options.add_argument("--disable-bundled-ppapi-flash")
+prefs = {
+    "profile.default_content_setting_values.plugins":1,
+    "profile.content_settings.plugin_whitelist.adobe-flash-player":1,
+    "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player":1
+#    "profile.content_settings.PluginsAllowedForUrls":["http://perf.wwws.nri.co.jp"]
+#    "PluginsBlockedForUrls":["http://www.example.com"]
+}
+chrome_options.add_experimental_option("prefs", prefs)
+#driver = webdriver.Chrome(chrome_options=chrome_options,service_args=["--verbose","--log-path=webdriver.log"])
+#driver = webdriver.Chrome(chrome_options=chrome_options,service_args=["--verbose","--log-path=webdriver.log"])
+driver = webdriver.Chrome(executable_path=r'/usr/local/bin/chromedriver', chrome_options=chrome_options)
+
+
+# driver = webdriver.Chrome()
+# Googleの検索TOP画面を開く。
+driver.get("https://helpx.adobe.com/jp/flash-player/kb/235703.html")
+sleep(5)
+# ブラウザを終了する。
+# driver.close()

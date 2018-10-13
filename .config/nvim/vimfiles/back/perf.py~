@@ -1,0 +1,174 @@
+# -*- coding: utf-8 -*-
+# python2.7をjthonに認識のさせるためのコード #
+#loading python site packages selenium
+#Pathはpython2.7が設置された所です。
+installedSitePakagePath = "/home/dev001/python2.7/lib/python2.7/site-packages/"
+sys.path.append(installedSitePakagePath)
+
+import sys
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+import unittest, time, re
+# 以下seleniumのコード
+
+#options = Options()
+#options.add_argument('--headless')
+#options.add_argument('--disable-gpu')
+#driver = webdriver.Chrome(chrome_options=options)
+
+
+chrome_options = webdriver.ChromeOptions()
+prefs = {"profile.default_content_setting_values.notifications" : 2}
+chrome_options.add_experimental_option("prefs",prefs)
+
+# network.proxy.type => 0 プロキシを使用しない
+#profile.set_preference("network.proxy.type", 0)
+
+# flash を有効にする
+#profile.set_preference("plugin.state.flash", 2)
+
+# Firefoxのwebdriverをロード
+dirver = webdriver.Chrome(chrome_options=chrome_options)
+#driver = webdriver.Firefox(firefox_profile=profile)
+
+# 要素がロードされるまでの待ち時間を10秒に設定
+driver.implicitly_wait(10)
+
+# ログイン画面をロード
+driver.get('http://perf.wwws.nri.co.jp')
+
+# ウィンドウを最大化する
+driver.maximize_window()
+
+# ID,Passwordを入力しサインインボタンをクリックする
+login_id = driver.find_element_by_id("_58_login")
+password = driver.find_element_by_id("_58_password")
+login_id.send_keys("Administrator")
+password.send_keys("46$hiGE!")
+driver.find_element_by_xpath("//input[@value='サインイン']").click()
+
+# for sikulix
+setShowActions=True
+Settings.ActionLogs = True
+Settings.InfoLogs = True
+Settings.DebugLogs = False
+Settings.LogTime = False
+
+Settings.AlwaysResize=1
+Settings.MoveMouseDelay = 0
+Settings.ClickDelay = 0
+Settings.DelayBeforeMouseDown = 0
+Settings.TypeDelay = 0
+Settings.AutoWaitTimeout = 30 * 1000
+# 画像判定の類似度を90%にする
+Settings.MinSimilarity=0.90
+
+
+# パフォーマンスリポートのページへ移動
+driver.get("http://perf.wwws.nri.co.jp/user/administrator/performance-reports")
+
+# ---sikulix--- Begin
+def get_perf(files):
+
+    for xmlfile in  files:
+        while not exists("1537517509551.png"):
+            sleep(3)
+        click("1537517559380.png")
+
+        while not exists("1537517594552.png"):
+            sleep(3)
+        click("1537517594552.png")
+
+        while not exists("1537950670154.png"):
+            sleep(3)
+        click("1537950670154.png")
+
+        while not exists("1537518293573.png"):
+           sleep(3)
+        click("1537518293573.png")
+
+        type(xmlfile)
+        type(Key.ENTER)
+        sleep(2)
+
+        while not exists("1537538124476.png"):
+            sleep(3)
+        click("1537538124476.png")
+
+        while not exists("1537536376299.png"):
+            sleep(3)
+        click("1537536376299.png")
+
+        while not exists("1537536441119.png"):
+            sleep(3)
+        click("1537536488812.png")
+
+        while not exists("1537950670154.png"):
+            sleep(3)
+        click("1537950670154.png")
+
+        sleep(1)
+        type(Key.DELETE*5)
+
+        csvfile=xmlfile.replace('.xml', '.csv')
+        type(csvfile)
+        type(Key.ENTER)
+
+        if exists("1538050174879.png",5):
+            click("1538050307445.png")
+
+
+        while not exists("1537536441119.png"):
+            sleep(3)
+        click("1538045109154.png")
+
+# ---sikulix--- End
+
+import glob
+path = '/home/dev001/dev/python2.7/sikulix/perf.sikuli/*.xml'
+xf = glob.glob(path)
+
+get_perf(xf)
+
+# driverの開放
+driver.quit()
+
+exit()
+
+
+
+
+
+
+#-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
