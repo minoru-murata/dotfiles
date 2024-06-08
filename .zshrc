@@ -1,10 +1,10 @@
 
 
-source ~/.bash_aliases
+# source ~/.bash_aliases
 
 # Load rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init - zsh)"
 
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug ~/.zplug
@@ -16,10 +16,12 @@ source ~/.zplug/init.zsh
 export ENHANCD_COMMAND=cd
 export ENHANCD_FILTER=fzy:percol:peco:fzf
 export ENHANCD_DOT_SHOW_FULLPATH=1
-#export ENHANCD_FILTER=peco:percol:gof:fzf
+
+export ENHANCD_FILTER=peco:percol:gof:fzf
 
 # プラグインを定義する
 zplug "zsh-users/zsh-autosuggestions"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 
 # コマンドも管理する
 # グロブを受け付ける（ブレースやワイルドカードなど）
@@ -57,7 +59,7 @@ zplug "rupa/z", use:"*.sh"
 # enhacd 
 zplug "b4b4r07/enhancd", use:init.sh
 
-# A next-generation cd command with an interactive filter
+## A next-generation cd command with an interactive filter
 zplug "junegunn/fzf-bin", \
     as:command, \
     rename-to:"fzf", \
