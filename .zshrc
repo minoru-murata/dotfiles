@@ -3,7 +3,7 @@
 # source ~/.bash_aliases
 
 # Load rbenv
-#export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/.local/bin:$PATH"
 #eval "$(rbenv init - zsh)"
 
 if [[ ! -d ~/.zplug ]];then
@@ -13,11 +13,11 @@ fi
 source ~/.zplug/init.zsh
 
 # enhancd config
-export ENHANCD_COMMAND=cd
-export ENHANCD_FILTER=fzy:percol:peco:fzf
-export ENHANCD_DOT_SHOW_FULLPATH=1
+#export ENHANCD_COMMAND=cd
+#export ENHANCD_FILTER=fzy:percol:peco:fzf
+#export ENHANCD_DOT_SHOW_FULLPATH=1
 
-export ENHANCD_FILTER=peco:percol:gof:fzf
+#export ENHANCD_FILTER=peco:percol:gof:fzf
 
 # プラグインを定義する
 zplug "zsh-users/zsh-autosuggestions"
@@ -57,7 +57,7 @@ fi
 zplug "rupa/z", use:"*.sh"
 
 # enhacd 
-zplug "b4b4r07/enhancd", use:init.sh
+#zplug "b4b4r07/enhancd", use:init.sh
 
 ## A next-generation cd command with an interactive filter
 zplug "junegunn/fzf-bin", \
@@ -114,4 +114,10 @@ export LIME_DIR_DISPLAY_COMPONENTS=2
 
 # Set PATH for GAE
 # export PATH=$HOME/go/appengine:$PATH
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
